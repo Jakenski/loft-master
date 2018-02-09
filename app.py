@@ -1,38 +1,52 @@
 from flask.ext.api import FlaskAPI, status, exceptions
-from flask import request, url_for, make_response
+from flask import request, response
 import datetime
-import timeit
+#import LOFT
+
 
 
 app = FlaskAPI(__name__)
 
+#customer = [{name: ..., arrived_on: LOFT.time_come, items: ['kalyan0', 'kalyan1']}, gone: LOFT.time_gone]
 
-@app.route("/customers/", methods=['POST', 'GET'])
+
+
+
+
+@app.route('/add_customer', methods=['POST'])
 def add_customer():
-    if request.method == 'POST':
-        print (request.get_data())
-        data = request.get_json()
-        with open('my_customers.csv', 'a+') as f:
-            timestamp = datetime.datetime.now().strftime('%Y:%m:%d %H:%M')
-            name = data['name']
-            f.write('%s,%s\n' % (name, timestamp)) 
-        return make_response('All good')
-    else:
-        with open('my_customers.csv') as f:
-            return f.readlines()
+    data = request.get_json()
+  
+    validated_customer_data = validate_customer(data)
+    customers.append(validated_customer_data)
+    return response(status_code=200, data={'foo': 1, 'bar': 2))
+
+
+@app.route('/checkout_customer', methods=['POST'])
+def checkout_customer():
+    data = request.get_json()
+    customer_data = find_customer(data)
+    amount = get_amount(customer_data)
+    remove_customer(customer)
+
+    return response({'amount': amount})
+
+
+@app.route('/add_item', methods=['POST'])
+def add_item():
+    data = request.get_json()
+    user = find_customer(data)
+    add_item(item, customer)
+    return({'amount': amount, 'item':item})
+
+
+@app.route('/get_customer', methods=['GET'])
+def get_customer():
+    return costomers
 
 
 
-@app.route("/close/<int:key>/", methods=['POST'])
-def calculate_total(name):
-    pass
     
-
-
 
 app.run()
 
-#Создать среду
-#Составить план 
-#Понять, что именно нужно мне знать
-#Написать 
