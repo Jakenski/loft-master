@@ -37,7 +37,7 @@ def add_item():
     data = request.get_json()
     user = find_customer(data)
     add_item(item, customer)
-    return({'amount': amount, 'item':item})
+    return response({'amount': amount, 'item':item})
 
 
 @app.route('/get_customer', methods=['GET'])
