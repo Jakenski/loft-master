@@ -23,8 +23,7 @@ def validate_custumer(name,time_come,customer):
 
 def find_customer(needed_name):
     for customer in customers.values():
-        if name = needed_name:
-            return name 
+        pass
 
 @app.route('/add_customer', methods=['POST'])
 def add_customer():
