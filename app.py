@@ -14,7 +14,7 @@ def get_amount(customer_data):
     amount = LOFT.get_total(data)
     return amount 
 
-def validate_custumer(name,time_come,customer):
+def validate_custumer(name,time_come,customer): #Сделать проверку(валидацию)
     name = data.get('name')
     time_come = data.get('come')
     customer = dict.fromkeys(['name','arrived_on'],name,time_come)
@@ -22,8 +22,9 @@ def validate_custumer(name,time_come,customer):
     return customer_dict
 
 def find_customer(needed_name):
-    for customer in customers.values():
-        pass
+    for customer_name in customers.values():
+        if customer_name = needed_name:
+            return customer_name 
 
 @app.route('/add_customer', methods=['POST'])
 def add_customer():
@@ -56,12 +57,12 @@ def add_item():
 
 @app.route('/get_customer', methods=['POST'])
 def get_customer():
-    return costomers
+    return customers
 
 
-
-    
 
 app.run()
+
+
 
 
